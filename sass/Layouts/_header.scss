@@ -1,0 +1,155 @@
+.header {
+    font-size: $fs-menu;
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    transition: all 0.5s;
+    &__logo {
+        margin-right: auto;
+        padding: 0;
+        img {
+            width: 80px;
+        }
+    }
+    &__menu {
+        .nav-item .nav-link {
+            @include styleText($font-primary, $color-dark-2, $fs-menu, $fw3);
+            margin: 0 50px 0 0;
+            padding: 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 50%;
+                bottom: -30px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: $color-purple;
+                transform: scale(0);
+                transition: all 0.3s ease;
+            }
+        }
+        .nav-item:hover {
+            .nav-link {
+                color: $color-purple;
+            }
+            .nav-link::before {
+                transform: scale(1.5);
+            }
+        }
+        .active {
+            .nav-link::before {
+                transform: scale(1);
+            }
+        }
+    }
+    &__phone {
+        font-size: 0.9rem;
+        padding-right: 6px;
+        .dripicons-phone {
+            padding-right: 0.5em;
+        }
+    }
+    &__social {
+        font-size: 0.9em;
+        i {
+            font-size: 1.1em;
+            padding-left: 9px;
+            color: $color-dark-1;
+            transition: all 0.3s ease;
+            &:hover {
+                color: $color-purple;
+            }
+        }
+    }
+}
+.header-scroll {
+    background-color: $color-white;
+    z-index: 100;
+    animation: fadeInUp 0.5s ease;
+    padding: 6px 0;
+    .header__logo {
+        display: none;
+    }
+    .btn-purple {
+        padding: 0.8em 1.5em;
+    }
+}
+.header-animation {
+    animation: fadeInUp 0.5s ease;
+}
+// Responsive
+@media (max-width: 1199px) {
+    .navbar-expand-lg .navbar-toggler {
+        display: block;
+        position: relative;
+
+        span {
+            color: $color-dark-1;
+        }
+        .navbar-toggler-icon {
+            width: 24px;
+            height: 20px;
+            &-1 {
+                @include iconToggle(50%);
+                transform: translateY(-300%);
+                transition: all 0.3s;
+            }
+            &-2 {
+                @include iconToggle(0);
+            }
+            &-3 {
+                @include iconToggle(-50%);
+                transform: translateY(300%);
+                transition: all 0.3s;
+            }
+        }
+        &:hover {
+            .navbar-toggler-icon {
+                &-1 {
+                    transform: translateY(-150%);
+                }
+                &-3 {
+                    transform: translateY(150%);
+                }
+                &-1,
+                &-2,
+                &-3 {
+                    background-color: $color-purple;
+                }
+            }
+        }
+    }
+    .navbar-expand-lg .navbar-collapse {
+        display: none !important;
+    }
+    .header {
+        background-color: $color-white;
+        &__logo {
+            img {
+                width: 48px;
+            }
+        }
+    }
+    .header-scroll {
+        padding: 0;
+        .header__logo {
+            display: block;
+        }
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
